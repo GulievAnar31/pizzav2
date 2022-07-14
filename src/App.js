@@ -6,8 +6,6 @@ import PizzaBlock from './components/PizzaBlock';
 import './scss/app.scss';
 import Pizzas from '../src/assets/json/pizzas.json';
 
-console.log(Pizzas);
-
 function App() {
   return (
     <div className="App">

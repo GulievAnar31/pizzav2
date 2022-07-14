@@ -2,7 +2,7 @@ import React from 'react';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-const PizzaBlock = ({name, price, imageUrl, id, sizes, types}) => {
+const PizzaBlock = ({title, price, imageUrl, id, sizes, types}) => {
   const [pizzaCount, setPizzaCount] = React.useState(0);
   const [typeActive, setTypeActive] = React.useState();
   const [sizeActive, setSizeActive] = React.useState();
@@ -17,7 +17,7 @@ const PizzaBlock = ({name, price, imageUrl, id, sizes, types}) => {
     src={imageUrl}
     alt="Pizza"
   />
-  <h4 className="pizza-block__title">{name}</h4>
+  <h4 className="pizza-block__title">{title}</h4>
   <div className="pizza-block__selector">
     <ul>
       {types.map((item, index) => {
