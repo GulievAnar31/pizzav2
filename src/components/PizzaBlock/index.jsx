@@ -11,7 +11,8 @@ const PizzaBlock = ({title, price, imageUrl, id, sizes, types}) => {
     setPizzaCount(1 + pizzaCount);
   }
 
-  return  <div key={id} className="pizza-block">
+  return <div className='pizza-block-wrapper'>
+  <div key={id} className="pizza-block">
   <img
     className="pizza-block__image"
     src={imageUrl}
@@ -59,6 +60,7 @@ const PizzaBlock = ({title, price, imageUrl, id, sizes, types}) => {
     </div>
   </div>
 </div>
+</div> 
 };
 
 export default PizzaBlock

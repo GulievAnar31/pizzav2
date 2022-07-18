@@ -11,6 +11,7 @@ const Home = () => {
 
   React.useEffect(() => {
     getPizzas(setPizzas, setIsLoading);
+    window.scrollTo(0, 0);
   }, []);
 
   return <>
