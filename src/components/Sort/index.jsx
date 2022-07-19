@@ -1,13 +1,20 @@
 import React from 'react';
+import { context } from '../../Pages/Home';
 
-const sortArr = ['популярности', 'цене', 'алфавиту'];
+const sortArr = [
+  {value: 'популярности', sortedProperty: 'rating'},
+  {value: 'цене', sortedProperty: '-price'},
+  {value: 'алфавиту', sortedProperty: 'title'}
+];
 
 const Sort = () => {
   const [activeSortMenu, setActiveSort] = React.useState(false);
   const [activeSortItem, setActiveSortItem] = React.useState(0);
+  const sortContext = React.useContext(context);
 
-  const setSort = (index) => {
+  const setSort = (index, item) => {
     setActiveSortItem(index);
+    sortContext.setSort(item.sortedProperty);
     setActiveSort(false);
   }
 
@@ -25,16 +32,16 @@ const Sort = () => {
       />
     </svg>
     <b>Сортировка по:</b>
-    <span>{sortArr[activeSortItem]}</span>
+    <span>{sortArr[activeSortItem].value}</span>
   </div>
   <div className="sort__popup">
     { activeSortMenu && <ul>
       {sortArr.map((item, index) => {
         return <li
          className={activeSortItem === index ? 'active' : ''}
-         onClick={() => setSort(index)}
+         onClick={() => setSort(index, item)}
          key = {index}>
-          {item}
+          {item.value}
           </li>
       })}
     </ul>
