@@ -4,6 +4,8 @@ import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { getPizzas, sortCategoryPizza, sortedPizza } from '../service/main.service';
+import { searchContext } from '../App';
+import ReactPaginate from 'react-paginate';
 
 export const context = React.createContext()
 
@@ -12,6 +14,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [category, setCategory] = React.useState(0);
   const [sort, setSort] = React.useState();
+  const { searchValue } = React.useContext(searchContext);
 
   React.useEffect(() => {
     getPizzas(setPizzas, setIsLoading);
@@ -23,25 +26,34 @@ const Home = () => {
   }, [category]);
 
   React.useEffect(() => {
-    Pizzas && sortedPizza(category, sort, setPizzas, setIsLoading);
-  }, [sort])
+    Pizzas && sortedPizza(category, sort, setPizzas, searchValue, setIsLoading);
+  }, [sort, searchValue])
 
   return <>
-          <div className="content__top">
-            <context.Provider value={{setSort, setCategory}}>
-              <Categories />
-              <Sort />
-            </context.Provider>
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            {!isLoading
-              ? Pizzas && Pizzas?.map((item, index) => {
-              return <PizzaBlock key={index} {...item} />;
-            })
-              : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
-          </div>
-          </>
+  <div className="content__top">
+    <context.Provider value={{setSort, setCategory}}>
+      <Categories />
+      <Sort />
+    </context.Provider>
+  </div>
+  <h2 className="content__title">Все пиццы</h2>
+  <div className="content__items">
+    {!isLoading
+      ? Pizzas && Pizzas?.map((item, index) => {
+      return <PizzaBlock key={index} {...item} />;
+    })
+      : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
+  </div>
+  <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        // onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        // pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
+</>
 }
 
 export default Home;

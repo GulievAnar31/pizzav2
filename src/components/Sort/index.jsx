@@ -3,7 +3,7 @@ import { context } from '../../Pages/Home';
 
 const sortArr = [
   {value: 'популярности', sortedProperty: 'rating'},
-  {value: 'цене', sortedProperty: '-price'},
+  {value: 'цене', sortedProperty: 'price'},
   {value: 'алфавиту', sortedProperty: 'title'}
 ];
 

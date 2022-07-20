@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/pizza-logo.svg';
+import Search from '../Search';
 
 export default function Header() {
   return (
@@ -10,11 +11,12 @@ export default function Header() {
             <div className="header__logo">
               <Link to='/'>
               <img width="38" src={logo} alt="Pizza logo" />
-              </Link>
               <div>
                 <h1>React Pizza</h1>
                 <p>самая вкусная пицца во вселенной</p>
               </div>
+              </Link>
+              <Search />
             </div>
             <div className="header__cart">
               <Link to="/cart" className="button button--cart">

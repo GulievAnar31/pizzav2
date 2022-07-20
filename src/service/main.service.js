@@ -24,18 +24,23 @@ export const sortCategoryPizza = async (categoryId, setPizzas, setIsLoading) => 
     });
 };
 
-export const sortedPizza = async (categoryId, sortProperty, setPizzas, setIsLoading) => {
+export const sortedPizza = async (
+  categoryId,
+  sortProperty,
+  setPizzas,
+  searchValue,
+  setIsLoading,
+) => {
   setIsLoading(true);
   fetch(
-    `${mockApi}${categoryId > -1 && `?category=${categoryId}`}&sortBy=${sortProperty}&order=${
-      sortProperty === 'price' ? 'asc' : 'desc'
-    }`,
+    `${mockApi}?${
+      categoryId !== null ? `category=${categoryId}` : ''
+    }&_sort=${sortProperty}&_order=desc${searchValue ? `&search=${searchValue}` : ''}`,
   )
     .then((res) => {
       return res.json();
     })
     .then((json) => {
-      console.log(json);
       setPizzas(json);
       setIsLoading(false);
     });
