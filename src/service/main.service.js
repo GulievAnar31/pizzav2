@@ -1,4 +1,4 @@
-const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items`;
+const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?page=1&limit=4`;
 
 export const getPizzas = async (setPizzas, setIsLoading) => {
   setIsLoading(true);
@@ -14,7 +14,7 @@ export const getPizzas = async (setPizzas, setIsLoading) => {
 
 export const sortCategoryPizza = async (categoryId, setPizzas, setIsLoading) => {
   setIsLoading(true);
-  fetch(`${mockApi}?category=${categoryId}`)
+  fetch(`${mockApi}&category=${categoryId}`)
     .then((res) => {
       return res.json();
     })
@@ -33,9 +33,9 @@ export const sortedPizza = async (
 ) => {
   setIsLoading(true);
   fetch(
-    `${mockApi}?${
+    `${mockApi}&${
       categoryId !== null ? `category=${categoryId}` : ''
-    }&_sort=${sortProperty}&_order=desc${searchValue ? `&search=${searchValue}` : ''}`,
+    }&_sortBy=${sortProperty}&_order=desc${searchValue ? `&search=${searchValue}` : ''}`,
   )
     .then((res) => {
       return res.json();
