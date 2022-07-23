@@ -15,12 +15,16 @@ const Home = () => {
   const [category, setCategory] = React.useState(0);
   const [sort, setSort] = React.useState();
   const { searchValue } = React.useContext(searchContext);
-  const [ currentPage, setCurrentPage ] = React.useState();
+  const [ currentPage, setCurrentPage ] = React.useState(1);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading);
+    getPizzas(setPizzas, setIsLoading, 1);
     window.scrollTo(0, 0);
   }, []);
+
+  React.useEffect(() => {
+    getPizzas(setPizzas, setIsLoading, currentPage);
+  }, [currentPage]);
 
   React.useEffect(() => {
     Pizzas && sortCategoryPizza(category, setPizzas, setIsLoading);
