@@ -13,7 +13,7 @@ export default function Pagination({ items, setCurrentPage, currentPage }) {
       }
       if(itemsArr.length > items) setPaginationState({ items: itemsArr, currentItem: 0 });
     }
-  }, []);
+  }, [items]);
 
   return (
     <div>

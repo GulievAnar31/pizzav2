@@ -1,8 +1,10 @@
-const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?page=1&limit=4`;
+const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
 
-export const getPizzas = async (setPizzas, setIsLoading) => {
+export const getPizzas = async (setPizzas, setIsLoading, page) => {
+  const url = `page=${page}&limit=4`;
+
   setIsLoading(true);
-  fetch(mockApi)
+  fetch(mockApi + url)
     .then((res) => {
       return res.json();
     })
