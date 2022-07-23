@@ -1,8 +1,29 @@
 import React from 'react'
-import styles from './Pagination.module.scss';
+import styles from './pagination.module.scss';
 
-export default function Pagination() {
+export default function Pagination({ items, setCurrentPage, currentPage }) {
+  const [paginationState, setPaginationState] = React.useState();
+
+  React.useEffect(() => {
+    if(items){
+      let itemsArr = [];
+
+      for(let i = 0; i <= items; i++){
+        itemsArr.push(i + 1);
+      }
+      if(itemsArr.length > items) setPaginationState({ items: itemsArr, currentItem: 0 });
+    }
+  }, []);
+
   return (
-    <div>Pagination</div>
+    <div>
+      <ul className={styles.paginate}>
+      {paginationState && paginationState.items.map((item, index) => {
+          return <li key={item} className={currentPage && item === currentPage ? 'active' : ''} onClick={() => {
+            setCurrentPage(item);
+          }}>{item}</li>
+      })}
+      </ul>
+    </div>
   )
 }

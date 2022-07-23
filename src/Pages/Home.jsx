@@ -5,7 +5,7 @@ import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { getPizzas, sortCategoryPizza, sortedPizza } from '../service/main.service';
 import { searchContext } from '../App';
-import ReactPaginate from 'react-paginate';
+import Pagination from '../components/Pagination';
 
 export const context = React.createContext()
 
@@ -15,6 +15,7 @@ const Home = () => {
   const [category, setCategory] = React.useState(0);
   const [sort, setSort] = React.useState();
   const { searchValue } = React.useContext(searchContext);
+  const [ currentPage, setCurrentPage ] = React.useState();
 
   React.useEffect(() => {
     getPizzas(setPizzas, setIsLoading);
@@ -44,15 +45,7 @@ const Home = () => {
     })
       : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
   </div>
-  <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        // onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        // pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      />
+  <Pagination items={3} setCurrentPage={setCurrentPage}  currentPage={currentPage}/>
 </>
 }
 
