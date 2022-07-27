@@ -23,16 +23,8 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading, currentPage);
-  }, [currentPage]);
-
-  React.useEffect(() => {
-    Pizzas && sortCategoryPizza(category, setPizzas, setIsLoading);
-  }, [category]);
-
-  React.useEffect(() => {
-    Pizzas && sortedPizza(category, sort, setPizzas, searchValue, setIsLoading);
-  }, [sort, searchValue])
+    getPizzas(setPizzas, setIsLoading, currentPage, category, sort, searchValue);
+  }, [currentPage, category, sort, searchValue]);
 
   return <>
   <div className="content__top">
@@ -49,7 +41,7 @@ const Home = () => {
     })
       : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
   </div>
-  <Pagination items={3} setCurrentPage={setCurrentPage}  currentPage={currentPage}/>
+  <Pagination items={2} setCurrentPage={setCurrentPage}  currentPage={currentPage}/>
 </>
 }
 

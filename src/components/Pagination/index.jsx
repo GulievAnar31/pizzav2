@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './pagination.module.scss';
+import styles from './Pagination.module.scss';
 
 export default function Pagination({ items, setCurrentPage, currentPage }) {
   const [paginationState, setPaginationState] = React.useState();
