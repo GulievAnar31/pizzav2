@@ -14,7 +14,7 @@ const Sort = () => {
 
   const setSort = (index, item) => {
     setActiveSortItem(index);
-    sortContext.setSort(index);
+    sortContext.setSort(item.sortedProperty);
     setActiveSort(false);
   }
 

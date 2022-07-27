@@ -8,9 +8,12 @@ export const getPizzas = async (
   sortProperty,
   searchValue
   ) => {
-  const url = `page=${page}&limit=5${categoryId ? `&category=${categoryId}` : ''}${sortProperty ? `&_sortBy=${sortProperty}&_order=desc` : ''}${searchValue ? `&search=${searchValue}` : ''}`;
-
-  console.log(url);
+  
+    console.log(searchValue, categoryId, sortProperty);
+  const url = `page=${page}&limit=5` + 
+  `${categoryId ? `&category=${categoryId}` : ''}` + 
+  `${sortProperty ? `&sortBy=${sortProperty}&order=asc` : `&sortBy=rating&order=asc`}` +
+  `${searchValue ? `&search=${searchValue}` : ''}`;
 
   setIsLoading(true);
   fetch(mockApi + url)
