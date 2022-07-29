@@ -34,8 +34,8 @@ const Sort = () => {
     <b>Сортировка по:</b>
     <span>{sortArr[activeSortItem].value}</span>
   </div>
-  <div className="sort__popup">
-    { activeSortMenu && <ul>
+  { activeSortMenu && <div className="sort__popup">
+     <ul>
       {sortArr.map((item, index) => {
         return <li
          className={activeSortItem === index ? 'active' : ''}
@@ -45,8 +45,7 @@ const Sort = () => {
           </li>
       })}
     </ul>
-    }
-  </div>
+  </div>}
 </div>
 }
 
