@@ -9,7 +9,6 @@ export const categoriesReducer = createSlice({
     initialState,
     reducers: {
         changeCategories: (state, action) => {
-            debugger;
             state.categorie = action.payload
         }
     }

@@ -24,7 +24,6 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    debugger;
     getPizzas(setPizzas, setIsLoading, currentPage, currentCategorie.categorie, sort, searchValue);
   }, [currentPage, sort, searchValue, currentCategorie]);
 
