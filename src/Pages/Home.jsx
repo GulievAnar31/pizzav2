@@ -6,13 +6,14 @@ import PizzaBlock from '../components/PizzaBlock'
 import { getPizzas } from '../service/main.service';
 import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
+import { useSelector, useDispatch } from 'react-redux'
 
 export const context = React.createContext()
 
 const Home = () => {
+  const currentCategorie = useSelector((state) => state.categories);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
-  const [category, setCategory] = React.useState(0);
   const [sort, setSort] = React.useState();
   const { searchValue } = React.useContext(SearchContext);
   const [ currentPage, setCurrentPage ] = React.useState(1);
@@ -23,12 +24,13 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading, currentPage, category, sort, searchValue);
-  }, [currentPage, category, sort, searchValue]);
+    debugger;
+    getPizzas(setPizzas, setIsLoading, currentPage, currentCategorie.categorie, sort, searchValue);
+  }, [currentPage, sort, searchValue, currentCategorie]);
 
   return <>
   <div className="content__top">
-    <context.Provider value={{setSort, setCategory}}>
+    <context.Provider value={{setSort}}>
       <Categories />
       <Sort />
     </context.Provider>

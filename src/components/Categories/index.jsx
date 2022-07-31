@@ -1,13 +1,16 @@
 import React from 'react'
 import { context } from '../../Pages/Home';
+import { useSelector, useDispatch } from 'react-redux'
+import { changeCategories } from '../../store/reducers/categoriesReducer';
 
 const categories = [
   'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
 ]
 
 export default function Categories() {
-  const contextCategories = React.useContext(context);
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const currentCategorie = useSelector((state) => state.categories);
+  const [activeIndex, setActiveIndex] = React.useState(currentCategorie.categorie);
+  const dispatch = useDispatch();
 
   const onClickCategory  = (index) => {
     setActiveIndex(index);
@@ -20,8 +23,8 @@ export default function Categories() {
                   {
                   categories.map((item, index) => {
                     return <li key={index} onClick={() => {
-                      contextCategories.setCategory(index);
                       onClickCategory(index);
+                      dispatch(changeCategories(index));
                     }} className={activeIndex === index ? 'active' : ''}>{item}</li>
                   })
                   }
