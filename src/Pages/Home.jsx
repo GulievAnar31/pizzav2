@@ -3,8 +3,8 @@ import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
-import { getPizzas, sortCategoryPizza, sortedPizza } from '../service/main.service';
-import { searchContext } from '../App';
+import { getPizzas } from '../service/main.service';
+import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
 
 export const context = React.createContext()
@@ -14,7 +14,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [category, setCategory] = React.useState(0);
   const [sort, setSort] = React.useState();
-  const { searchValue } = React.useContext(searchContext);
+  const { searchValue } = React.useContext(SearchContext);
   const [ currentPage, setCurrentPage ] = React.useState(1);
 
   React.useEffect(() => {
