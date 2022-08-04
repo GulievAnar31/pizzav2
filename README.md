@@ -2,13 +2,7 @@ This project my educational project on modern trend technologies. There is no ba
 
 ## Stack
 
--React
--Redux-Toolkit
--React-router
--React Skeleton
--Axios
--Scss
--CSS modules
+React, Redux-Toolkit, React-router, React Skeleton,Axios, Scss, CSS modules
 
 ## Available Scripts
 
