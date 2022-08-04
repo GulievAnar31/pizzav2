@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeCategories } from '../../store/reducers/PizzaReducer';
+import { changeCategories } from '../../store/slices/PizzaSlice';
 
 const categories = [
   'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'

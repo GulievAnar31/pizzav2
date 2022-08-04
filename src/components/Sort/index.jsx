@@ -1,5 +1,5 @@
 import React from 'react';
-import { changeSort } from '../../store/reducers/PizzaReducer';
+import { changeSort } from '../../store/slices/PizzaSlice';
 import { useDispatch } from 'react-redux'
 
 
