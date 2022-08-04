@@ -11,10 +11,9 @@ import { useSelector, useDispatch } from 'react-redux'
 export const context = React.createContext()
 
 const Home = () => {
-  const { categorie } = useSelector((state) => state.pizza);
+  const { categorie, sort } = useSelector((state) => state.pizza);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
-  const [sort, setSort] = React.useState();
   const { searchValue } = React.useContext(SearchContext);
   const [ currentPage, setCurrentPage ] = React.useState(1);
 
@@ -29,10 +28,8 @@ const Home = () => {
 
   return <>
   <div className="content__top">
-    <context.Provider value={{setSort}}>
       <Categories />
       <Sort />
-    </context.Provider>
   </div>
   <h2 className="content__title">Все пиццы</h2>
   <div className="content__items">

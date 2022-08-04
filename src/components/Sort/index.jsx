@@ -1,5 +1,7 @@
 import React from 'react';
-import { context } from '../../Pages/Home';
+import { changeSort } from '../../store/reducers/PizzaReducer';
+import { useDispatch } from 'react-redux'
+
 
 const sortArr = [
   {value: 'популярности', sortedProperty: 'rating'},
@@ -10,11 +12,11 @@ const sortArr = [
 const Sort = () => {
   const [activeSortMenu, setActiveSort] = React.useState(false);
   const [activeSortItem, setActiveSortItem] = React.useState(0);
-  const sortContext = React.useContext(context);
+  const dispatch = useDispatch();
 
   const setSort = (index, item) => {
     setActiveSortItem(index);
-    sortContext.setSort(item.sortedProperty);
+    dispatch(changeSort(item.sortedProperty))
     setActiveSort(false);
   }
 
