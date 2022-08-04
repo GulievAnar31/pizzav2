@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 export const context = React.createContext()
 
 const Home = () => {
-  const currentCategorie = useSelector((state) => state.categories);
+  const { categorie } = useSelector((state) => state.pizza);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
   const [sort, setSort] = React.useState();
@@ -24,8 +24,8 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading, currentPage, currentCategorie.categorie, sort, searchValue);
-  }, [currentPage, sort, searchValue, currentCategorie]);
+    getPizzas(setPizzas, setIsLoading, currentPage, categorie, sort, searchValue);
+  }, [currentPage, sort, searchValue, categorie]);
 
   return <>
   <div className="content__top">

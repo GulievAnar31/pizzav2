@@ -4,7 +4,7 @@ const initialState = {
     categorie: 0,
 };
 
-export const categoriesReducer = createSlice({
+export const PizzaReducer = createSlice({
     name: 'categories',
     initialState,
     reducers: {
@@ -14,6 +14,6 @@ export const categoriesReducer = createSlice({
     }
 })
 
-export const { changeCategories } = categoriesReducer.actions
+export const { changeCategories } = PizzaReducer.actions
 
-export default categoriesReducer.reducer;
+export default PizzaReducer.reducer;

@@ -1,15 +1,14 @@
 import React from 'react'
-import { context } from '../../Pages/Home';
 import { useSelector, useDispatch } from 'react-redux'
-import { changeCategories } from '../../store/reducers/categoriesReducer';
+import { changeCategories } from '../../store/reducers/PizzaReducer';
 
 const categories = [
   'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
 ]
 
 export default function Categories() {
-  const currentCategorie = useSelector((state) => state.categories);
-  const [activeIndex, setActiveIndex] = React.useState(currentCategorie.categorie);
+  const { categorie } = useSelector((state) => state.pizza);
+  const [activeIndex, setActiveIndex] = React.useState(categorie);
   const dispatch = useDispatch();
 
   const onClickCategory  = (index) => {
