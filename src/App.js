@@ -6,14 +6,9 @@ import NotFound from './Pages/NotFound';
 import './scss/app.scss';
 import { Routes, Route } from 'react-router-dom';
 
-export const SearchContext = React.createContext();
-
 function App() {
-  const [searchValue, setSearchValue] = React.useState('');
-
   return (
     <div className="App">
-      <SearchContext.Provider value={{ searchValue, setSearchValue }}>
         <div className="wrapper">
           <Header />
           <div className="content">
@@ -26,7 +21,6 @@ function App() {
             </div>
           </div>
         </div>
-      </SearchContext.Provider>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     categorie: 0,
     sort: 'rating',
+    search: ''
 };
 
 export const PizzaReducer = createSlice({
@@ -15,9 +16,12 @@ export const PizzaReducer = createSlice({
         changeSort: (state, action) => {
             state.sort = action.payload
         },
+        changeSearch: (state, action) => {
+            state.search = action.payload
+        }
     }
 })
 
-export const { changeCategories, changeSort } = PizzaReducer.actions
+export const { changeCategories, changeSort, changeSearch } = PizzaReducer.actions
 
 export default PizzaReducer.reducer;

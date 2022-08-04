@@ -4,17 +4,13 @@ import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { getPizzas } from '../service/main.service';
-import { SearchContext } from '../App';
 import Pagination from '../components/Pagination';
 import { useSelector, useDispatch } from 'react-redux'
 
-export const context = React.createContext()
-
 const Home = () => {
-  const { categorie, sort } = useSelector((state) => state.pizza);
+  const { categorie, sort, search } = useSelector((state) => state.pizza);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
-  const { searchValue } = React.useContext(SearchContext);
   const [ currentPage, setCurrentPage ] = React.useState(1);
 
   React.useEffect(() => {
@@ -23,8 +19,8 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading, currentPage, categorie, sort, searchValue);
-  }, [currentPage, sort, searchValue, categorie]);
+    getPizzas(setPizzas, setIsLoading, currentPage, categorie, sort, search);
+  }, [currentPage, sort, search, categorie]);
 
   return <>
   <div className="content__top">

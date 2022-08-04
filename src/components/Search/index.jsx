@@ -1,16 +1,16 @@
 import React from 'react'
 import styles from './Search.module.scss'
-import { SearchContext } from '../../App'
+import { useDispatch } from 'react-redux/es/exports';
+import { changeSearch } from '../../store/reducers/PizzaReducer';
 
 export default function Search() {
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  const dispatch = useDispatch();
 
   return (
     <div>
       <input
-        value={searchValue}
         onChange={(e) => {
-          setSearchValue(e.target.value)
+          dispatch(changeSearch(e.target.value));
         }} 
         className={styles.searchBtn} 
         type="text" 
