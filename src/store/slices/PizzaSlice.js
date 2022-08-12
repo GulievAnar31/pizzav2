@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const PizzaReducer = createSlice({
-    name: 'categories',
+    name: 'filter',
     initialState,
     reducers: {
         changeCategories: (state, action) => {
