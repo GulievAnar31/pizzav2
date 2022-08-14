@@ -19,7 +19,7 @@ export const getPizzas = async (
       return res.json();
     })
     .then((json) => {
-      setPizzas(json);
+      if(json.length > 0) setPizzas(json);
       setIsLoading(false);
     });
 }; 

@@ -11,7 +11,7 @@ import { setFilters } from '../store/slices/PizzaSlice.js';
 import qs  from 'qs'
 
 const Home = () => {
-  const { categorie, sort, search } = useSelector((state) => state.pizza);
+  const { page, categorie, sort, search } = useSelector((state) => state.pizza);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
   const [ currentPage, setCurrentPage ] = React.useState(1);
@@ -20,30 +20,30 @@ const Home = () => {
 
   React.useEffect(() => {
     if(window.location.search){
-      const queryObj = qs.parse(window.location.search.substring(1))
-      console.log(queryObj);
+      const queryObj = qs.parse(window.location.search.substring(1));
       dispatch(setFilters(qs.parse(queryObj)));
     }
     window.scrollTo(0, 0);
-  }, [window.location.search]);
+  }, []);
 
   React.useEffect(() => {
-    getPizzas(setPizzas, setIsLoading, currentPage, categorie, sort, search);
-  }, [currentPage, sort, search, categorie]);
+    const queryObj = {
+      page: Number(currentPage),
+      sortBy: sort ?? 'rating',
+      search: search ?? '',
+      category: Number(categorie)
+    };
 
-  React.useEffect(() => {
-    if(window){
-      const queryObj = {
-        page: currentPage,
-        sortBy: sort,
-        search: search,
-        category: categorie
-      };
-      const queryStr = qs.stringify(queryObj);
+    const queryStr = qs.stringify(queryObj);
 
+    if(window.location.search.substring(1) !== queryStr){
       navigate(`?${queryStr}`);
     }
-  }, [currentPage, sort, search, categorie]);
+}, [currentPage, sort, search, categorie]);
+
+  React.useEffect(() => {
+    getPizzas(setPizzas, setIsLoading, Number(page), Number(categorie), sort, search);
+  }, [page, categorie, sort, search]);
 
   return <>
   <div className="content__top">
@@ -53,7 +53,7 @@ const Home = () => {
   <h2 className="content__title">Все пиццы</h2>
   <div className="content__items">
     {!isLoading
-      ? Pizzas && Pizzas?.map((item, index) => {
+      ? Pizzas && Pizzas.map((item, index) => {
       return <PizzaBlock key={index} {...item} />;
     })
       : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}

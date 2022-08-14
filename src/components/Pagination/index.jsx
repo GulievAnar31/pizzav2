@@ -20,7 +20,7 @@ export default function Pagination({ items, setCurrentPage, currentPage }) {
       <ul className={styles.paginate}>
       {paginationState && paginationState.items.map((item, index) => {
           return <li key={item} className={currentPage && item === currentPage ? 'active' : ''} onClick={() => {
-            setCurrentPage(item);
+            setCurrentPage(Number(item));
           }}>{item}</li>
       })}
       </ul>
