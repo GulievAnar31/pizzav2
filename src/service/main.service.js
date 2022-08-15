@@ -14,7 +14,7 @@ export const getPizzas = async (
   `${searchValue ? `&search=${searchValue}` : ''}`;
 
   setIsLoading(true);
-  fetch(mockApi + url)
+  await fetch(mockApi + url)
     .then((res) => {
       return res.json();
     })
