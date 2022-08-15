@@ -1,4 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { addPizza } from '../../store/slices/BasketSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -6,9 +9,13 @@ const PizzaBlock = ({title, price, imageUrl, id, sizes, types}) => {
   const [pizzaCount, setPizzaCount] = React.useState(0);
   const [typeActive, setTypeActive] = React.useState();
   const [sizeActive, setSizeActive] = React.useState();
+  // const { basket } = useSelector((state) => console.log(state));
+  const dispatch = useDispatch();
 
   function addNewPizza() {
     setPizzaCount(1 + pizzaCount);
+    dispatch(addPizza({id: id, name: title, price: price}))
+    console.log(title, price, id, sizes, types);
   }
 
   return <div className='pizza-block-wrapper'>

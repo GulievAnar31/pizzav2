@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 export default function Cart() {
+  const { basket } = useSelector(state => state);
+
   return (
                 <div className="cart">
             <div className="cart__top">
@@ -11,15 +14,11 @@ export default function Cart() {
               </div>
             </div>
             <div style={{display: 'block'}} className="content__items">
-              <div>
-                aaaa
-              </div>
-              <div>
-                aaaa
-              </div>
-              <div>
-                aaaa
-              </div>
+              {basket && basket.map((item, index) => {
+                return <div key={index}>
+                  <span>{item.name}</span>
+                </div>
+              })}
             </div>
             <div className="cart__bottom">
               <div className="cart__bottom-details">
