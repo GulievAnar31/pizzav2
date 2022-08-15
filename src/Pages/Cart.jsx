@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 export default function Cart() {
-  const { basket } = useSelector(state => state);
-
+  const { basket, basketInfo } = useSelector(state => state);
+  
   return (
                 <div className="cart">
             <div className="cart__top">
@@ -22,8 +22,8 @@ export default function Cart() {
             </div>
             <div className="cart__bottom">
               <div className="cart__bottom-details">
-                <span> Всего пицц: <b>3 шт.</b> </span>
-                <span> Сумма заказа: <b>900 ₽</b> </span>
+                <span> Всего пицц: <b>{`${basketInfo.allPizzas} .шт`}</b> </span>
+                <span> Сумма заказа: <b>{`${basketInfo.price} ₽`}</b> </span>
               </div>
               <div className="cart__bottom-buttons">
                 <Link to="/" className="button button--outline button--add go-back-btn">

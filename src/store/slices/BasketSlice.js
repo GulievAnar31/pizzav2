@@ -9,7 +9,7 @@ export const BasketReducer = createSlice({
     initialState,
     reducers: {
         addPizza: (state, action) => {
-            state.push(action.payload);
+            return [...state, action.payload];
         }
     }
 });
