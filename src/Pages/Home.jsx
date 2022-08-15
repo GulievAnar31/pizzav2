@@ -4,7 +4,7 @@ import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { getPizzas } from '../service/main.service';
-import Pagination from '../components/Pagination';
+import { addParamsInUrl } from '../lib/addParamsInUrl.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setFilters } from '../store/slices/PizzaSlice.js';
@@ -14,6 +14,7 @@ const Home = () => {
   const { page, categorie, sort, search } = useSelector((state) => state.pizza);
   const [Pizzas, setPizzas] = React.useState();
   const [isLoading, setIsLoading] = React.useState(false);
+  const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,19 +29,8 @@ const Home = () => {
   }, []);
 
   React.useEffect(() => {
-    const queryObj = {
-      page: Number(page),
-      sortBy: sort ?? 'rating',
-      search: search ?? '',
-      category: Number(categorie)
-    };
-
-    const queryStr = qs.stringify(queryObj);
-
-    if(window.location.search.substring(1) !== queryStr){
-      navigate(`?${queryStr}`);
-    }
-}, []);
+    addParamsInUrl(page, categorie, sort, search, isMounted, navigate, qs);
+  }, [page, categorie, sort, search]);
 
   React.useEffect(() => {
     if(!isSearch.current){
