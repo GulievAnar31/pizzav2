@@ -8,7 +8,7 @@ export const getPizzas = async (
   sortProperty,
   searchValue
   ) => {
-  const url = `page=${page}&limit=5` + 
+  const url = `page=${page}&` + 
   `${categoryId ? `&category=${categoryId}` : ''}` + 
   `${sortProperty ? `&sortBy=${sortProperty}&order=asc` : `&sortBy=rating&order=asc`}` +
   `${searchValue ? `&search=${searchValue}` : ''}`;

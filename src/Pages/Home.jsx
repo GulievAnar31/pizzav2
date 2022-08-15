@@ -58,7 +58,8 @@ const Home = () => {
     })
       : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
   </div>
-  <Pagination items={2} setCurrentPage={setCurrentPage}  currentPage={currentPage}/>
+  {/* i dont need pagination */}
+  {/* <Pagination items={2} setCurrentPage={setCurrentPage}  currentPage={currentPage}/> */}
 </>
 }
 
