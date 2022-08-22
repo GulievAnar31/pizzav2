@@ -1,0 +1,25 @@
+.block {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  &_txt {
+    margin-top: 35px;
+    margin-left: 20px;
+    font-size: 20px;
+  }
+
+  &_img {
+    width: 100px;
+    height: 100px;
+  }
+
+  &_btnDelete {
+    display: block;
+    position: absolute;
+    left: 70%;
+    margin-top: 35px;
+    border: none;
+    background: none;
+  }
+}

@@ -19,7 +19,7 @@ const PizzaBlock = ({title, price, imageUrl, id, sizes, types}) => {
 
   function addNewPizza() {
     setPizzaCount(1 + pizzaCount);
-    dispatch(addPizza({id: id, name: title, price: price, type: typeActive ?? 0, size: sizeActive ?? 0}))
+    dispatch(addPizza({id: id, name: title, price: price, type: typeActive ?? 0, size: sizeActive ?? 0, img: imageUrl}))
     dispatch(changePrice(price));
   }
 

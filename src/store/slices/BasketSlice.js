@@ -13,10 +13,13 @@ export const BasketReducer = createSlice({
         },
         removeAllPizzas: () => {
             return initialState;
+        },
+        deletePizza: (state, action) => {
+          return state = action.payload
         }
     }
 });
 
-export const { addPizza, removeAllPizzas } = BasketReducer.actions;
+export const { addPizza, removeAllPizzas, deletePizza } = BasketReducer.actions;
 
 export default BasketReducer.reducer;

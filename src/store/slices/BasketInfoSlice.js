@@ -12,18 +12,21 @@ const BasketInfoReducer = createSlice({
     changePrice: (state, action) => {
       state.price += action.payload;
     },
+    decreasePrice: (state, action) => {
+      state.price -= action.payload;
+    },
     changeAllPizzas: (state, action) => {
       state.allPizzas = action.payload
     },
+    decreaseCount: (state, action) => {
+      state.allPizzas -= action.payload
+    },
     deleteInfo: () => {
-      return {
-        price: 0,
-        allPizzas: 0
-      }
+      return initialState;
     }
   }
 });
 
-export const { changePrice, changeAllPizzas, deleteInfo } = BasketInfoReducer.actions;
+export const { changePrice, changeAllPizzas, deleteInfo, decreasePrice, decreaseCount } = BasketInfoReducer.actions;
 
 export default BasketInfoReducer.reducer;

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
+import PizzaInBasket from '../components/PizzaInBasket/index';
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -21,9 +22,7 @@ export default function Cart() {
             </div>
             <div style={{display: 'block'}} className="content__items">
               {basket && basket.map((item, index) => {
-                return <div key={index}>
-                  <span>{item.name}</span>
-                </div>
+                return <PizzaInBasket key={index} index={index} item={item}/>
               })}
             </div>
             <div className="cart__bottom">
