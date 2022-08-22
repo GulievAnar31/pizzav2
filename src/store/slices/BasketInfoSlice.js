@@ -14,10 +14,16 @@ const BasketInfoReducer = createSlice({
     },
     changeAllPizzas: (state, action) => {
       state.allPizzas = action.payload
+    },
+    deleteInfo: () => {
+      return {
+        price: 0,
+        allPizzas: 0
+      }
     }
   }
 });
 
-export const { changePrice, changeAllPizzas } = BasketInfoReducer.actions;
+export const { changePrice, changeAllPizzas, deleteInfo } = BasketInfoReducer.actions;
 
 export default BasketInfoReducer.reducer;

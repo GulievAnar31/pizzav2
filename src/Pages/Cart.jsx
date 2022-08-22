@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeAllPizzas } from '../store/slices/BasketSlice';
+import { deleteInfo } from '../store/slices/BasketInfoSlice';
 
 export default function Cart() {
+  const dispatch = useDispatch();
   const { basket, basketInfo } = useSelector(state => state);
   
   return (
@@ -10,7 +13,10 @@ export default function Cart() {
             <div className="cart__top">
               <h2 className="content__title">Корзина</h2>
               <div className="cart__clear">
-                <span>Очистить корзину</span>
+                <span onClick={() => {
+                  dispatch(removeAllPizzas())
+                  dispatch(deleteInfo());
+                }}>Очистить корзину</span>
               </div>
             </div>
             <div style={{display: 'block'}} className="content__items">
