@@ -1,7 +1,7 @@
 export const addParamsInUrl = (page, categorie, sort, search, isMounted, navigate, qs) => {
   if(isMounted.current){
     const queryObj = {
-      page: Number(page),
+      page: 1,
       sortBy: sort ?? 'rating',
       search: search ?? '',
       category: Number(categorie)

@@ -1,11 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
     page: 1,
-    categorie: 0,
+    categorie: '0',
     sort: 'rating',
-    search: ''
+    search: '',
+    pizzas: []
 };
+
+export const fetchPizzas = createAsyncThunk(
+    'pizza/fetchPizzasStatus',
+    async (params) => {
+        const { categorie, sort, search, setIsLoading } = params;
+        
+        const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
+        const url = `page=${1}&` + 
+          `${categorie ? `&category=${categorie}` : '0'}` + 
+          `${sort ? `&sortBy=${sort}&order=asc` : `&sortBy=rating&order=asc`}` +
+          `${search ? `&search=${search}` : ''}`;
+
+          try {
+            const res = await axios.get(mockApi + url);
+            await setIsLoading(false);
+            console.log(url);
+            console.log(res.data);
+            return res.data;
+          } catch(err) {
+            alert(err.mesage);
+          }
+        }
+)
 
 export const PizzaReducer = createSlice({
     name: 'categories',
@@ -26,6 +51,12 @@ export const PizzaReducer = createSlice({
           state.sort = action.payload.sortBy
           state.search = action.payload.search
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchPizzas.fulfilled, (state, action) => {
+            console.log(action.payload)
+            state.pizzas = action.payload
+        })
     }
 })
 
