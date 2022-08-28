@@ -11,12 +11,16 @@ import { setFilters, fetchPizzas } from '../store/slices/PizzaSlice.js';
 import qs  from 'qs'
 
 const Home = () => {
-  const { page, categorie, sort, search, pizzas } = useSelector((state) => state.pizza);
+  const { page, categorie, sort, search, pizzas, status } = useSelector((state) => state.pizza);
   const [isLoading, setIsLoading] = React.useState(false);
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    status === 'loaded' ? setIsLoading(false) : setIsLoading(true);
+  }, [status]);
 
   React.useEffect(() => {
     if(window.location.search){
@@ -33,7 +37,7 @@ const Home = () => {
 
   React.useEffect(() => {
     if(!isSearch.current){
-      dispatch(fetchPizzas({page, categorie, sort, search, setIsLoading}));
+      dispatch(fetchPizzas({page, categorie, sort, search }));
     }
 
     isSearch.current = false

@@ -6,13 +6,14 @@ const initialState = {
     categorie: 0,
     sort: 'rating',
     search: '',
-    pizzas: []
+    pizzas: [],
+    status: 'loading'
 };
 
 export const fetchPizzas = createAsyncThunk(
     'pizza/fetchPizzasStatus',
     async (params) => {
-        const { categorie, sort, search, setIsLoading } = params;
+        const { categorie, sort, search } = params;
         
         const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
         const url = `page=${1}` + 
@@ -22,8 +23,6 @@ export const fetchPizzas = createAsyncThunk(
 
           try {
             const res = await axios.get(mockApi + url);
-            await setIsLoading(false);
-            console.log(res);
             return res.data;
           } catch(err) {
             alert(err.mesage);
@@ -55,6 +54,14 @@ export const PizzaReducer = createSlice({
         // rejected - загрузилось, pending - грузится
         builder.addCase(fetchPizzas.fulfilled, (state, action) => {
             state.pizzas = action.payload
+        })
+        .addCase(fetchPizzas.pending, (state) => {
+            state.status = 'loading';
+            console.log('Данные грузятся');
+        })
+        .addMatcher(fetchPizzas.rejected, (state) => {
+            state.status = 'loaded';
+            if(state.pizzas.length > 0) console.log('Данные загружены');
         })
     }
 })
