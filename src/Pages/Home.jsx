@@ -7,7 +7,7 @@ import { addParamsInUrl } from '../lib/addParamsInUrl.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice.js';
-import qs  from 'qs'
+import qs from 'qs'
 
 const Home = () => {
   const { page, categorie, sort, search, pizzas, status } = useSelector(selectorPizzas);
@@ -22,7 +22,7 @@ const Home = () => {
   }, [status]);
 
   React.useEffect(() => {
-    if(window.location.search){
+    if (window.location.search) {
       const queryObj = qs.parse(window.location.search.substring(1));
       dispatch(setFilters(qs.parse(queryObj)));
       isSearch.current = true;
@@ -35,29 +35,29 @@ const Home = () => {
   }, [page, categorie, sort, search]);
 
   React.useEffect(() => {
-    if(!isSearch.current){
-      dispatch(fetchPizzas({page, categorie, sort, search }));
+    if (!isSearch.current) {
+      dispatch(fetchPizzas({ page, categorie, sort, search }));
     }
 
     isSearch.current = false
   }, [page, categorie, sort, search]);
 
   return <>
-  <div className="content__top">
+    <div className="content__top">
       <Categories />
       <Sort />
-  </div>
-  <h2 className="content__title">Все пиццы</h2>
-  <div className="content__items">
-    {!isLoading
-      ? pizzas && pizzas.map((item, index) => {
-      return <PizzaBlock key={index} {...item} />;
-    })
-      : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
-  </div>
-  {/* i dont need pagination */}
-  {/* <Pagination items={2} setCurrentPage={setCurrentPage}  currentPage={currentPage}/> */}
-</>
+    </div>
+    <h2 className="content__title">Все пиццы</h2>
+    <div className="content__items">
+      {!isLoading
+        ? pizzas && pizzas.map((item, index) => {
+          return <PizzaBlock key={index} {...item} />;
+        })
+        : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
+    </div>
+    {/* i dont need pagination */}
+    {/* <Pagination items={2} setCurrentPage={setCurrentPage}  currentPage={currentPage}/> */}
+  </>
 }
 
 export default Home;
