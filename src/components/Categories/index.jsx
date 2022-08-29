@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { changeCategories } from '../../store/slices/PizzaSlice';
+import { changeCategories, selectorPizzas } from '../../store/slices/PizzaSlice';
 
 const categories = [
   'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
 ]
 
 export default function Categories() {
-  const { categorie } = useSelector((state) => state.pizza);
+  const { categorie } = useSelector(selectorPizzas);
   const [activeIndex, setActiveIndex] = React.useState(categorie);
   const dispatch = useDispatch();
 

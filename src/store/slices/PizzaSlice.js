@@ -11,8 +11,13 @@ const initialState = {
 };
 
 export const fetchPizzas = createAsyncThunk(
-    'pizza/fetchPizzasStatus',
-    async (params) => {
+    'pizza/fetchPizzasStatus', //type
+    async (params, thunkApi) => {
+        console.log(thunkApi.getState()); // выведет весь стейт редакса 
+        // Это уже прикручивает сам redux toolkit
+        // В thunkApi есть dispatch, getState, requestId,
+        // signal + requestId используются для того что бы предотвратить запрос
+        // rejectedWithValue - 
         const { categorie, sort, search } = params;
         
         const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
@@ -21,9 +26,15 @@ export const fetchPizzas = createAsyncThunk(
           `${sort ? `&sortBy=${sort}&order=asc` : `&sortBy=rating&order=asc`}` +
           `${search ? `&search=${search}` : ''}`;
 
+        
+
           try {
             const res = await axios.get(mockApi + url);
-            return res.data;
+            if(res.data.length === 0){
+                thunkApi.rejectWithValue('Пиццы пустые')
+            } else {
+                return res.data;
+            }
           } catch(err) {
             alert(err.mesage);
           }
@@ -65,6 +76,8 @@ export const PizzaReducer = createSlice({
         })
     }
 })
+
+export const selectorPizzas = (state) => state.pizza;
 
 export const { changeCategories, changeSort, changeSearch, setFilters } = PizzaReducer.actions
 

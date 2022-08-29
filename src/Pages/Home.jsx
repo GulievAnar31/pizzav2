@@ -3,15 +3,14 @@ import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
-import { getPizzas } from '../service/main.service';
 import { addParamsInUrl } from '../lib/addParamsInUrl.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setFilters, fetchPizzas } from '../store/slices/PizzaSlice.js';
+import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice.js';
 import qs  from 'qs'
 
 const Home = () => {
-  const { page, categorie, sort, search, pizzas, status } = useSelector((state) => state.pizza);
+  const { page, categorie, sort, search, pizzas, status } = useSelector(selectorPizzas);
   const [isLoading, setIsLoading] = React.useState(false);
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
