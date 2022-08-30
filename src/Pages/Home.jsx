@@ -51,7 +51,7 @@ const Home = () => {
     <div className="content__items">
       {!isLoading
         ? pizzas && pizzas.map((item, index) => {
-          return <Link key={index} to={`/pizza/${item.id}`}><PizzaBlock {...item} /></Link>;
+          return <PizzaBlock key={index} {...item} />;
         })
         : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
     </div>

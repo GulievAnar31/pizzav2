@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { addPizza } from '../../store/slices/BasketSlice';
 import { changePrice, changeAllPizzas } from '../../store/slices/BasketInfoSlice';
-import { useRoutes } from 'react-router-dom';
+import { Link, useRoutes } from 'react-router-dom';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -26,11 +26,13 @@ const PizzaBlock = ({ title, price, imageUrl, id, sizes, types }) => {
 
   return <div className='pizza-block-wrapper'>
     <div key={id} className="pizza-block">
-      <img
-        className="pizza-block__image"
-        src={imageUrl}
-        alt="Pizza"
-      />
+      <Link to={`/pizza/${id}`}>
+        <img
+          className="pizza-block__image"
+          src={imageUrl}
+          alt="Pizza"
+        />
+      </Link>
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
