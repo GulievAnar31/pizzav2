@@ -17,13 +17,12 @@ export const fetchPizzas = createAsyncThunk(
 
     const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
     const url = `page=${1}` +
-      `${categorie && `&category=${categorie}`}` +
+      `${categorie ? `&category=${categorie}` : `&category=0`}` +
       `${sort ? `&sortBy=${sort}&order=asc` : `&sortBy=rating&order=asc`}` +
       `${search ? `&search=${search}` : ''}`;
 
     try {
-      const res = await axios.get(mockApi + url);
-      console.log(mockApi + url)
+      const res = await axios.get(categorie !== 0 ? mockApi + url : mockApi);
       if (res.data && res.data.length === 0) {
         thunkApi.rejectWithValue('Пиццы пустые')
       } else {
