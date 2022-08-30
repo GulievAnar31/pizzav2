@@ -5,7 +5,7 @@ import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { addParamsInUrl } from '../lib/addParamsInUrl.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice.js';
 import qs from 'qs'
 
@@ -51,7 +51,7 @@ const Home = () => {
     <div className="content__items">
       {!isLoading
         ? pizzas && pizzas.map((item, index) => {
-          return <PizzaBlock key={index} {...item} />;
+          return <Link key={index} to={`/pizza/${item.id}`}><PizzaBlock {...item} /></Link>;
         })
         : [...new Array(6)].fill(0).map((_, index) => <MyLoader key={index} />)}
     </div>
