@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/img/pizza-logo.svg';
 import { useSelector } from 'react-redux';
 import Search from '../Search';
 
-export default function Header() {
-  const { basketInfo } = useSelector(state => state);
+const Header = (): ReactElement => {
+  const { basketInfo } = useSelector(state => state) as any;
   const { pathname } = useLocation();
 
   return (
@@ -62,3 +62,5 @@ export default function Header() {
     </>
   )
 }
+
+export default Header;
