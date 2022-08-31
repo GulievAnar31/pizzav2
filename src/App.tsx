@@ -1,5 +1,4 @@
-import React, { Children } from 'react';
-import Header from './components/Header';
+import React from 'react';
 import Home from './Pages/Home';
 import Cart from './Pages/Cart';
 import NotFound from './Pages/NotFound';
@@ -12,10 +11,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/cart" exact element={<Cart />} />
-        <Route path="*" exact element={<NotFound />} />
-        <Route path="/pizza/:id" exact element={<FullPizza />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/pizza/:id" element={<FullPizza />} />
       </Route>
     </Routes>
   );
