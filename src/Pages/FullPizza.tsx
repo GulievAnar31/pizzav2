@@ -3,10 +3,19 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../scss/components/fullPizza.module.scss';
 
-const FullPizza = () => {
+type ICurrentPizza = {
+  id: string;
+  imageUrl: string;
+  title: string;
+  price: number;
+  types: number[];
+  sizes: number[];
+}
+
+const FullPizza: React.FC = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [currentPizza, setCurrentPizza] = React.useState();
+  const [currentPizza, setCurrentPizza] = React.useState<ICurrentPizza>();
 
   const fetchPizza = async () => {
     try {

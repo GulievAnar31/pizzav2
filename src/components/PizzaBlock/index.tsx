@@ -7,11 +7,20 @@ import { Link, useRoutes } from 'react-router-dom';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-const PizzaBlock = ({ title, price, imageUrl, id, sizes, types }) => {
-  const { basket } = useSelector(state => state);
+type PizzaBlockProps = {
+  title: string;
+  price: number;
+  imageUrl: string;
+  id: string;
+  sizes: number[];
+  types: number[];
+}
+
+const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: PizzaBlockProps) => {
+  const { basket } = useSelector(state => state) as any;
   const [pizzaCount, setPizzaCount] = React.useState(0);
-  const [typeActive, setTypeActive] = React.useState();
-  const [sizeActive, setSizeActive] = React.useState();
+  const [typeActive, setTypeActive] = React.useState<number>();
+  const [sizeActive, setSizeActive] = React.useState<number>();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -46,7 +55,7 @@ const PizzaBlock = ({ title, price, imageUrl, id, sizes, types }) => {
           })}
         </ul>
         <ul>
-          {sizes.map((item, index) => {
+          {sizes.map((item, index: number) => {
             return <li
               onClick={() => setSizeActive(index)}
               className={sizeActive === index ? 'active' : ''}

@@ -4,7 +4,7 @@ import logo from '../../assets/img/pizza-logo.svg';
 import { useSelector } from 'react-redux';
 import Search from '../Search';
 
-const Header = (): ReactElement => {
+const Header: React.FC = () => {
   const { basketInfo } = useSelector(state => state) as any;
   const { pathname } = useLocation();
 

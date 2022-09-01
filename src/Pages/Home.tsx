@@ -8,8 +8,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice.js';
 import qs from 'qs'
+import { AnyAction } from '@reduxjs/toolkit';
 
-const Home = () => {
+type IQueryObjType = {
+  category: string;
+  page: string;
+  search: string;
+  sortBy: string;
+}
+
+const Home: React.FC = () => {
   const { page, categorie, sort, search, pizzas, status } = useSelector(selectorPizzas);
   const [isLoading, setIsLoading] = React.useState(false);
   const isMounted = React.useRef(false);
@@ -23,7 +31,8 @@ const Home = () => {
 
   React.useEffect(() => {
     if (window.location.search) {
-      const queryObj = qs.parse(window.location.search.substring(1));
+      const queryObj = qs.parse(window.location.search.substring(1)) as IQueryObjType;
+      console.log(queryObj);
       dispatch(setFilters(qs.parse(queryObj)));
       isSearch.current = true;
     }
