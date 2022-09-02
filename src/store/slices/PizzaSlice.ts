@@ -10,9 +10,16 @@ const initialState = {
   status: 'loading'
 };
 
+export type ParamsType = {
+  page?: any;
+  categorie: number;
+  sort: string;
+  search: string;
+}
+
 export const fetchPizzas = createAsyncThunk(
   'pizza/fetchPizzasStatus', //type
-  async (params, thunkApi) => {
+  async (params: ParamsType, thunkApi: any) => {
     const { categorie, sort, search } = params;
 
     const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
@@ -63,7 +70,7 @@ export const PizzaReducer = createSlice({
         state.status = 'loading';
         console.log('Данные грузятся');
       })
-      .addMatcher(fetchPizzas.rejected, (state) => {
+      .addMatcher(fetchPizzas.rejected as any, (state) => {
         state.status = 'loaded';
 
         if (state.pizzas && state.pizzas.length > 0) console.log('Данные загружены');

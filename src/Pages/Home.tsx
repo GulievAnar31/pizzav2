@@ -6,9 +6,8 @@ import PizzaBlock from '../components/PizzaBlock'
 import { addParamsInUrl } from '../lib/addParamsInUrl.js';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice.js';
+import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice';
 import qs from 'qs'
-import { AnyAction } from '@reduxjs/toolkit';
 
 type IQueryObjType = {
   category: string;
@@ -45,7 +44,8 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     if (!isSearch.current) {
-      dispatch(fetchPizzas({ page, categorie, sort, search }));
+      // @ts-ignore
+      dispatch(fetchPizzas({ page, categorie, sort, search } as ParamsType));
     }
 
     isSearch.current = false
