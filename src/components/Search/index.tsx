@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, LegacyRef } from 'react'
+import React, { LegacyRef } from 'react'
 import styles from './Search.module.scss'
 import { useDispatch } from 'react-redux/es/exports';
 import { changeSearch } from '../../store/slices/PizzaSlice';

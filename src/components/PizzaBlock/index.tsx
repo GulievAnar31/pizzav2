@@ -3,18 +3,10 @@ import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { addPizza } from '../../store/slices/BasketSlice';
 import { changePrice, changeAllPizzas } from '../../store/slices/BasketInfoSlice';
-import { Link, useRoutes } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { PizzaBlockProps } from '../../interfaces/interfaces';
 
 const typeNames = ['тонкое', 'традиционное'];
-
-type PizzaBlockProps = {
-  title: string;
-  price: number;
-  imageUrl: string;
-  id: string;
-  sizes: number[];
-  types: number[];
-}
 
 const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: PizzaBlockProps) => {
   const { basket } = useSelector(state => state) as any;

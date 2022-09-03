@@ -4,24 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
 import PizzaInBasket from '../components/PizzaInBasket/index';
-
-
-type IState = {
-  basket: PizzaItemType[];
-  basketInfo: {
-    price: number;
-    allPizzas: number;
-  }
-}
-
-type PizzaItemType = {
-  id: string;
-  name: string;
-  price: number;
-  type: number;
-  size: number;
-  img: string;
-}
+import { IState } from '../interfaces/interfaces';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();

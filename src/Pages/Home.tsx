@@ -5,16 +5,10 @@ import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { addParamsInUrl } from '../lib/addParamsInUrl';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice';
 import qs from 'qs'
-
-type IQueryObjType = {
-  category: string;
-  page: string;
-  search: string;
-  sortBy: string;
-}
+import { IQueryObjType } from '../interfaces/interfaces';
 
 const Home: React.FC = () => {
   const { page, categorie, sort, search, pizzas, status } = useSelector(selectorPizzas);

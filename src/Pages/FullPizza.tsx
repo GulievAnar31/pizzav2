@@ -2,15 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../scss/components/fullPizza.module.scss';
-
-type ICurrentPizza = {
-  id: string;
-  imageUrl: string;
-  title: string;
-  price: number;
-  types: number[];
-  sizes: number[];
-}
+import { ICurrentPizza } from '../interfaces/interfaces';
 
 const FullPizza: React.FC = () => {
   const { id } = useParams();

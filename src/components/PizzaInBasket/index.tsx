@@ -3,32 +3,11 @@ import styles from './style.module.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { deletePizza } from '../../store/slices/BasketSlice';
 import { decreasePrice, decreaseCount } from '../../store/slices/BasketInfoSlice';
-
-type PizzaInBasketProps = {
-  item: {
-    img: string;
-    name: string;
-    price: number;
-  },
-  index: number;
-}
-
-type IState = {
-  basket: PizzaItemType[];
-}
-
-type PizzaItemType = {
-  id: string;
-  name: string;
-  price: number;
-  type: number;
-  size: number;
-  img: string;
-}
+import { StateType, PizzaInBasketProps } from '../../interfaces/interfaces';
 
 const PizzaInBasket: React.FC<PizzaInBasketProps> = ({ item, index }) => {
   const dispatch = useDispatch();
-  const { basket } = useSelector(state => state as IState);
+  const { basket } = useSelector(state => state as StateType);
 
   console.log(basket);
 
