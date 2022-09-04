@@ -1,4 +1,4 @@
-import React, { LegacyRef } from 'react'
+import React from 'react'
 import styles from './Search.module.scss'
 import { useDispatch } from 'react-redux/es/exports';
 import { changeSearch } from '../../store/slices/PizzaSlice';
@@ -6,7 +6,7 @@ import { debounce } from 'lodash';
 
 export default function Search() {
   const dispatch = useDispatch();
-  const inputRef = React.useRef<LegacyRef<HTMLInputElement> | string>('');
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const fetchSearch = React.useCallback(
     debounce((e) => {
@@ -16,8 +16,7 @@ export default function Search() {
   return (
     <div>
       <input
-        // @ts-ignore
-        ref={inputRef as LegacyRef<HTMLInputElement>}
+        ref={inputRef}
         onChange={(e) => {
           fetchSearch(e);
         }}
