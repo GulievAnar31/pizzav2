@@ -13,6 +13,13 @@ export type IState = {
   }
 }
 
+export type IBasketInfo = {
+  basketInfo: {
+    price: number;
+    allPizzas: number;
+  }
+}
+
 export type ICurrentPizza = {
   id: string;
   imageUrl: string;

@@ -3,9 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/img/pizza-logo.svg';
 import { useSelector } from 'react-redux';
 import Search from '../Search';
+import { IBasketInfo } from '../../interfaces/interfaces';
 
 const Header: React.FC = () => {
-  const { basketInfo } = useSelector(state => state) as any;
+  const { basketInfo } = useSelector(state => state) as IBasketInfo;
   const { pathname } = useLocation();
 
   return (

@@ -4,12 +4,13 @@ import { useDispatch } from 'react-redux/es/hooks/useDispatch';
 import { addPizza } from '../../store/slices/BasketSlice';
 import { changePrice, changeAllPizzas } from '../../store/slices/BasketInfoSlice';
 import { Link } from 'react-router-dom';
-import { PizzaBlockProps } from '../../interfaces/interfaces';
+import { PizzaBlockProps, PizzaItemType } from '../../interfaces/interfaces';
 
 const typeNames = ['тонкое', 'традиционное'];
 
 const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: PizzaBlockProps) => {
-  const { basket } = useSelector(state => state) as any;
+  const { basket } = useSelector(state => state) as { basket: PizzaItemType[] };
+
   const [pizzaCount, setPizzaCount] = React.useState(0);
   const [typeActive, setTypeActive] = React.useState<number>();
   const [sizeActive, setSizeActive] = React.useState<number>();

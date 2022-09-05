@@ -11,8 +11,9 @@ const Categories: React.FC = () => {
   const [activeIndex, setActiveIndex] = React.useState(categorie);
   const dispatch = useDispatch();
 
-  const onClickCategory = (index) => {
+  const onClickCategory = (index: number): void => {
     setActiveIndex(index);
+    dispatch(changeCategories(index));
   }
 
   return (
@@ -23,7 +24,6 @@ const Categories: React.FC = () => {
             categories.map((item, index) => {
               return <li key={index} onClick={() => {
                 onClickCategory(index);
-                dispatch(changeCategories(index));
               }} className={activeIndex === index ? 'active' : ''}>{item}</li>
             })
           }
