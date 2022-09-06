@@ -9,7 +9,7 @@ export default function Search() {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const fetchSearch = React.useCallback(
-    debounce((e) => {
+    debounce((e: React.ChangeEvent<HTMLInputElement>) => {
       dispatch(changeSearch(e.target.value));
     }, 1000), []);
 
@@ -17,7 +17,7 @@ export default function Search() {
     <div>
       <input
         ref={inputRef}
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           fetchSearch(e);
         }}
         className={styles.searchBtn}
