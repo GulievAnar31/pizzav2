@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { useDispatch } from 'react-redux/es/hooks/useDispatch';
+import { useAppDispatch } from '../../store/store';
 import { addPizza } from '../../store/slices/BasketSlice';
 import { changePrice, changeAllPizzas } from '../../store/slices/BasketInfoSlice';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: Pizz
   const [pizzaCount, setPizzaCount] = React.useState(0);
   const [typeActive, setTypeActive] = React.useState<number>();
   const [sizeActive, setSizeActive] = React.useState<number>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     dispatch(changeAllPizzas(basket.length));

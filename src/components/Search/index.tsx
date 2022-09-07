@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './Search.module.scss'
-import { useDispatch } from 'react-redux/es/exports';
+import { useAppDispatch } from '../../store/store';
 import { changeSearch } from '../../store/slices/PizzaSlice';
 import { debounce } from 'lodash';
 
 export default function Search() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const fetchSearch = React.useCallback(

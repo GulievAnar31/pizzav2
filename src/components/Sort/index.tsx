@@ -1,6 +1,6 @@
 import React from 'react';
 import { changeSort } from '../../store/slices/PizzaSlice';
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../store/store';
 
 
 const sortArr = [
@@ -12,7 +12,7 @@ const sortArr = [
 const Sort: React.FC = () => {
   const [activeSortMenu, setActiveSort] = React.useState(false);
   const [activeSortItem, setActiveSortItem] = React.useState(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const setSort = (index, item) => {
     setActiveSortItem(index);

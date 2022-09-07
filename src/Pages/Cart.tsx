@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../store/store';
 import { removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
 import PizzaInBasket from '../components/PizzaInBasket/index';
 import { IState } from '../interfaces/interfaces';
 
 const Cart: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { basket, basketInfo } = useSelector(state => state as IState);
 
   return (

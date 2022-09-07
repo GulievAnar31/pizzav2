@@ -4,7 +4,8 @@ import Sort from '../components/Sort';
 import MyLoader from '../components/Loader';
 import PizzaBlock from '../components/PizzaBlock'
 import { addParamsInUrl } from '../lib/addParamsInUrl';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../store/store';
 import { useNavigate } from 'react-router-dom';
 import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice';
 import qs from 'qs'
@@ -16,7 +17,7 @@ const Home: React.FC = () => {
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   React.useEffect(() => {
     status === 'loaded' ? setIsLoading(false) : setIsLoading(true);

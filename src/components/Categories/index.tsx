@@ -1,5 +1,6 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useAppDispatch } from '../../store/store';
 import { changeCategories, selectorPizzas } from '../../store/slices/PizzaSlice';
 
 const categories = [
@@ -9,7 +10,7 @@ const categories = [
 const Categories: React.FC = () => {
   const { categorie } = useSelector(selectorPizzas);
   const [activeIndex, setActiveIndex] = React.useState(categorie);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const onClickCategory = (index: number): void => {
     setActiveIndex(index);
