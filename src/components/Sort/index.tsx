@@ -9,16 +9,16 @@ const sortArr = [
   { value: 'алфавиту', sortedProperty: 'title' }
 ];
 
-const Sort: React.FC = () => {
+const Sort: React.FC = React.memo(() => {
   const [activeSortMenu, setActiveSort] = React.useState(false);
   const [activeSortItem, setActiveSortItem] = React.useState(0);
   const dispatch = useAppDispatch();
 
-  const setSort = (index, item) => {
+  const setSort = React.useCallback((index: number, item) => {
     setActiveSortItem(index);
     dispatch(changeSort(item.sortedProperty))
     setActiveSort(false);
-  }
+  }, []);
 
   return <div className="sort">
     <div onClick={() => setActiveSort(!activeSortMenu)} className="sort__label">
@@ -49,6 +49,6 @@ const Sort: React.FC = () => {
       </ul>
     </div>}
   </div>
-}
+});
 
 export default Sort;

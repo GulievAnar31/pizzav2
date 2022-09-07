@@ -1,15 +1,14 @@
 import React from 'react';
 import styles from './style.module.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useAppDispatch } from '../../store/store';
 import { deletePizza } from '../../store/slices/BasketSlice';
 import { decreasePrice, decreaseCount } from '../../store/slices/BasketInfoSlice';
 import { StateType, PizzaInBasketProps } from '../../interfaces/interfaces';
 
 const PizzaInBasket: React.FC<PizzaInBasketProps> = ({ item, index }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { basket } = useSelector(state => state as StateType);
-
-  console.log(basket);
 
   const deletePizzaId = (id, price) => {
     const newPizzasArr = basket.filter((item) => item !== basket[id]);

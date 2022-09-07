@@ -7,7 +7,8 @@ import { addParamsInUrl } from '../lib/addParamsInUrl';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../store/store';
 import { useNavigate } from 'react-router-dom';
-import { setFilters, fetchPizzas, selectorPizzas } from '../store/slices/PizzaSlice';
+import { fetchPizzas } from '../lib/asyncService';
+import { setFilters, selectorPizzas } from '../store/slices/PizzaSlice';
 import qs from 'qs'
 import { IQueryObjType } from '../interfaces/interfaces';
 
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const isMounted = React.useRef(false);
   const isSearch = React.useRef(false);
+  const isFirstReq = React.useRef(true)
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -40,7 +42,7 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     if (!isSearch.current) {
       // @ts-ignore
-      dispatch(fetchPizzas({ page, categorie, sort, search } as ParamsType));
+      dispatch(fetchPizzas({ page, categorie, sort, search, isFirstReq } as ParamsType));
     }
 
     isSearch.current = false

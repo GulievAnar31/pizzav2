@@ -1,7 +1,7 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { ParamsType, AsyncThunkConfig, PizzaStateType, PizzaItemType } from '../../interfaces/interfaces';
+import { PizzaStateType } from '../../interfaces/interfaces';
+import { fetchPizzas } from '../../lib/asyncService';
 
 const initialState: PizzaStateType = {
   page: 1,
@@ -11,31 +11,6 @@ const initialState: PizzaStateType = {
   pizzas: [],
   status: 'loading'
 };
-
-export const fetchPizzas = createAsyncThunk<PizzaItemType[], ParamsType>(
-  'pizza/fetchPizzasStatus', //type
-  async (params: ParamsType, thunkApi: AsyncThunkConfig) => {
-    const { categorie, sort, search } = params;
-
-    const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
-    const url = `page=${1}` +
-      `${categorie ? `&category=${categorie}` : `&category=0`}` +
-      `${sort ? `&sortBy=${sort}&order=asc` : `&sortBy=rating&order=asc`}` +
-      `${search ? `&search=${search}` : ''}`;
-
-    try {
-      const { data } = await axios.get<PizzaItemType[]>(categorie !== 0 ? mockApi + url : mockApi);
-
-      if (data && data.length === 0) {
-        thunkApi.rejectWithValue('Пиццы пустые')
-      } else {
-        return data;
-      }
-    } catch (err) {
-      alert(err.mesage);
-    }
-  }
-);
 
 export const PizzaReducer = createSlice({
   name: 'categories',

@@ -65,6 +65,9 @@ export type ParamsType = {
   categorie: number;
   sort: string;
   search: string;
+  isFirstReq?: {
+    current: boolean;
+  };
 }
 
 export type AddPizzaActionType = {
