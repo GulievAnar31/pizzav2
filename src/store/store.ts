@@ -1,9 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Store } from "@reduxjs/toolkit";
 import BasketReducer from "./slices/BasketSlice";
 import BasketInfoReducer from "./slices/BasketInfoSlice";
 import PizzaReducer from "./slices/PizzaSlice";
-
-export type RootState = ReturnType<typeof store.getState>
+import { useDispatch } from "react-redux";
 
 export const store = configureStore({
   reducer: {
@@ -12,3 +11,7 @@ export const store = configureStore({
     basketInfo: BasketInfoReducer
   }
 });
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>()
