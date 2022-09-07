@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { RootState } from '../store';
-import { ParamsType, AsyncThunkConfig, PizzaStateType } from '../../interfaces/interfaces';
+import { ParamsType, AsyncThunkConfig, PizzaStateType, PizzaItemType } from '../../interfaces/interfaces';
 
 const initialState: PizzaStateType = {
   page: 1,
@@ -12,7 +12,7 @@ const initialState: PizzaStateType = {
   status: 'loading'
 };
 
-export const fetchPizzas = createAsyncThunk(
+export const fetchPizzas = createAsyncThunk<PizzaItemType[], ParamsType>(
   'pizza/fetchPizzasStatus', //type
   async (params: ParamsType, thunkApi: AsyncThunkConfig) => {
     const { categorie, sort, search } = params;
@@ -24,11 +24,12 @@ export const fetchPizzas = createAsyncThunk(
       `${search ? `&search=${search}` : ''}`;
 
     try {
-      const res = await axios.get(categorie !== 0 ? mockApi + url : mockApi);
-      if (res.data && res.data.length === 0) {
+      const { data } = await axios.get<PizzaItemType[]>(categorie !== 0 ? mockApi + url : mockApi);
+
+      if (data && data.length === 0) {
         thunkApi.rejectWithValue('Пиццы пустые')
       } else {
-        return res.data;
+        return data;
       }
     } catch (err) {
       alert(err.mesage);
