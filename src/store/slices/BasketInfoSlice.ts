@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { BasketInfoType } from '../../interfaces/interfaces';
 
 
@@ -11,16 +11,16 @@ const BasketInfoReducer = createSlice({
   name: 'BasketInfo',
   initialState,
   reducers: {
-    changePrice: (state, action) => {
+    changePrice: (state, action: PayloadAction<number>) => {
       state.price += action.payload;
     },
-    decreasePrice: (state, action) => {
+    decreasePrice: (state, action: PayloadAction<number>) => {
       state.price -= action.payload;
     },
-    changeAllPizzas: (state, action) => {
+    changeAllPizzas: (state, action: PayloadAction<number>) => {
       state.allPizzas = action.payload
     },
-    decreaseCount: (state, action) => {
+    decreaseCount: (state, action: PayloadAction<number>) => {
       state.allPizzas -= action.payload
     },
     deleteInfo: () => {
