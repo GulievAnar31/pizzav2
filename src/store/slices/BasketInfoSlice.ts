@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { BasketInfoType } from '../../interfaces/interfaces';
 
-const initialState = {
+
+const initialState: BasketInfoType = {
   price: 0,
   allPizzas: 0
 }

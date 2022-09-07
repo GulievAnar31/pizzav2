@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { RootState } from '../store';
+import { ParamsType, AsyncThunkConfig, PizzaStateType } from '../../interfaces/interfaces';
 
-const initialState = {
+const initialState: PizzaStateType = {
   page: 1,
   categorie: 0,
   sort: 'rating',
@@ -10,16 +12,9 @@ const initialState = {
   status: 'loading'
 };
 
-export type ParamsType = {
-  page?: any;
-  categorie: number;
-  sort: string;
-  search: string;
-}
-
 export const fetchPizzas = createAsyncThunk(
   'pizza/fetchPizzasStatus', //type
-  async (params: ParamsType, thunkApi: any) => {
+  async (params: ParamsType, thunkApi: AsyncThunkConfig) => {
     const { categorie, sort, search } = params;
 
     const mockApi = `https://62d1010cd9bf9f170590bf69.mockapi.io/Items?`;
@@ -39,7 +34,7 @@ export const fetchPizzas = createAsyncThunk(
       alert(err.mesage);
     }
   }
-)
+);
 
 export const PizzaReducer = createSlice({
   name: 'categories',
@@ -78,7 +73,7 @@ export const PizzaReducer = createSlice({
   }
 })
 
-export const selectorPizzas = (state) => state.pizza;
+export const selectorPizzas = (state: RootState) => state.pizza;
 
 export const { changeCategories, changeSort, changeSearch, setFilters } = PizzaReducer.actions
 
