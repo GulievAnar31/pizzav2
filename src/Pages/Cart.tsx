@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../store/store';
-import { removeAllPizzas } from '../store/slices/BasketSlice';
+import { addAllPizzas, removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
 import PizzaInBasket from '../components/PizzaInBasket/index';
 import { IState } from '../interfaces/interfaces';
@@ -10,6 +10,24 @@ import { IState } from '../interfaces/interfaces';
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { basket, basketInfo } = useSelector(state => state as IState);
+  const isFirstRender = React.useRef(true);
+
+  const addBasketInfoInStore = React.useCallback(() => {
+    const jsonBasket = JSON.stringify(basket);
+    const jsonBasketInfo = JSON.stringify(basketInfo);
+    const storagePizzas = JSON.parse(localStorage.getItem('pizzas'));
+
+    if (storagePizzas.length > 0) {
+
+    } else {
+
+    }
+  }, []);
+
+  React.useEffect(() => {
+    addBasketInfoInStore();
+    console.log(basket, basketInfo);
+  }, [basket, basketInfo]);
 
   return (
     <div className="cart">
