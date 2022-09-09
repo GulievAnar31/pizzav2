@@ -6,7 +6,7 @@ import { deletePizza } from '../../store/slices/BasketSlice';
 import { decreasePrice, decreaseCount } from '../../store/slices/BasketInfoSlice';
 import { StateType, PizzaInBasketProps } from '../../interfaces/interfaces';
 
-const PizzaInBasket: React.FC<PizzaInBasketProps> = ({ item, index }) => {
+export const PizzaInBasket: React.FC<PizzaInBasketProps> = ({ item, index }) => {
   const dispatch = useAppDispatch();
   const { basket } = useSelector(state => state as StateType);
 
@@ -25,6 +25,4 @@ const PizzaInBasket: React.FC<PizzaInBasketProps> = ({ item, index }) => {
     </div>
     <hr />
   </>
-}
-
-export default PizzaInBasket;
+};

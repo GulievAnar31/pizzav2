@@ -9,7 +9,7 @@ const sortArr = [
   { value: 'алфавиту', sortedProperty: 'title' }
 ];
 
-const Sort: React.FC = React.memo(() => {
+export const Sort: React.FC = React.memo(() => {
   const [activeSortMenu, setActiveSort] = React.useState(false);
   const [activeSortItem, setActiveSortItem] = React.useState(0);
   const dispatch = useAppDispatch();
@@ -50,5 +50,3 @@ const Sort: React.FC = React.memo(() => {
     </div>}
   </div>
 });
-
-export default Sort;

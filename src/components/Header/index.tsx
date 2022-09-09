@@ -2,10 +2,10 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/img/pizza-logo.svg';
 import { useSelector } from 'react-redux';
-import Search from '../Search';
+import { Search } from '../Search';
 import { IBasketInfo } from '../../interfaces/interfaces';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { basketInfo } = useSelector(state => state) as IBasketInfo;
   const { pathname } = useLocation();
 
@@ -62,6 +62,4 @@ const Header: React.FC = () => {
       </div>
     </>
   )
-}
-
-export default Header;
+};

@@ -8,7 +8,7 @@ import { PizzaBlockProps, PizzaItemType } from '../../interfaces/interfaces';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: PizzaBlockProps) => {
+export const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: PizzaBlockProps) => {
   const { basket } = useSelector(state => state) as { basket: PizzaItemType[] };
 
   const [pizzaCount, setPizzaCount] = React.useState(0);
@@ -79,5 +79,3 @@ const PizzaBlock: React.FC = ({ title, price, imageUrl, id, sizes, types }: Pizz
     </div>
   </div>
 };
-
-export default PizzaBlock

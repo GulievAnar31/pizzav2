@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../store/store';
-import { addAllPizzas, removeAllPizzas } from '../store/slices/BasketSlice';
+import { removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
-import PizzaInBasket from '../components/PizzaInBasket/index';
+import { PizzaInBasket } from '../components/PizzaInBasket/index';
 import { IState } from '../interfaces/interfaces';
 
-const Cart: React.FC = () => {
+export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { basket, basketInfo } = useSelector(state => state as IState);
 
@@ -44,5 +44,3 @@ const Cart: React.FC = () => {
     </div>
   )
 };
-
-export default Cart;

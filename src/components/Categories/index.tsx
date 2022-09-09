@@ -7,7 +7,7 @@ const categories = [
   'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'
 ]
 
-const Categories: React.FC = () => {
+export const Categories: React.FC = () => {
   const { categorie } = useSelector(selectorPizzas);
   const [activeIndex, setActiveIndex] = React.useState(categorie);
   const dispatch = useAppDispatch();
@@ -32,6 +32,4 @@ const Categories: React.FC = () => {
       </div>
     </>
   )
-}
-
-export default Categories;
+};

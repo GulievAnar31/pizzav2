@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentLoader from 'react-content-loader';
 
-const MyLoader: React.FC = (props) => (
+export const MyLoader: React.FC = (props) => (
   <ContentLoader
     className='pizza-block'
     speed={2}
@@ -16,5 +16,3 @@ const MyLoader: React.FC = (props) => (
     <rect x="2" y="353" rx="0" ry="0" width="266" height="56" />
   </ContentLoader>
 );
-
-export default MyLoader;

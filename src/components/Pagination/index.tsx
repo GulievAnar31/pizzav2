@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Pagination.module.scss';
 
-const Pagination: React.FC = (props) => {
+export const Pagination: React.FC = (props) => {
   // @ts-ignore
   const { items, setCurrentPage, currentPage } = props;
   const [paginationState, setPaginationState] = React.useState();

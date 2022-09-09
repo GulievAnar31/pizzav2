@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../store/store';
 import { changeSearch } from '../../store/slices/PizzaSlice';
 import { debounce } from 'lodash';
 
-export default function Search() {
+export const Search: React.FC = () => {
   const dispatch = useAppDispatch();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -25,4 +25,4 @@ export default function Search() {
         placeholder='Поиск пиццы' />
     </div>
   )
-}
+};
