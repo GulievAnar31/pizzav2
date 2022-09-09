@@ -7,6 +7,9 @@ export const BasketReducer = createSlice({
   name: 'basket',
   initialState,
   reducers: {
+    addAllPizzas: (state, action) => {
+      state = action.payload;
+    },
     addPizza: (state, action: IActionAddPizza) => {
       return [...state, action.payload];
     },
@@ -19,6 +22,6 @@ export const BasketReducer = createSlice({
   }
 });
 
-export const { addPizza, removeAllPizzas, deletePizza } = BasketReducer.actions;
+export const { addPizza, removeAllPizzas, deletePizza, addAllPizzas } = BasketReducer.actions;
 
 export default BasketReducer.reducer;

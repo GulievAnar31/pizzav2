@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../store/store';
-import { removeAllPizzas } from '../store/slices/BasketSlice';
+import { addAllPizzas, removeAllPizzas } from '../store/slices/BasketSlice';
 import { deleteInfo } from '../store/slices/BasketInfoSlice';
 import PizzaInBasket from '../components/PizzaInBasket/index';
 import { IState } from '../interfaces/interfaces';
