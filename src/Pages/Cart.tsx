@@ -10,24 +10,6 @@ import { IState } from '../interfaces/interfaces';
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { basket, basketInfo } = useSelector(state => state as IState);
-  const isFirstRender = React.useRef(true);
-
-  const addBasketInfoInStore = React.useCallback(() => {
-    const jsonBasket = JSON.stringify(basket);
-    const jsonBasketInfo = JSON.stringify(basketInfo);
-    const storagePizzas = JSON.parse(localStorage.getItem('pizzas'));
-
-    if (storagePizzas.length > 0) {
-
-    } else {
-
-    }
-  }, []);
-
-  React.useEffect(() => {
-    addBasketInfoInStore();
-    console.log(basket, basketInfo);
-  }, [basket, basketInfo]);
 
   return (
     <div className="cart">
